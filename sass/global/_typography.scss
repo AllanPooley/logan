@@ -1,0 +1,96 @@
+/*=============================================>>>>>
+= Default typography styles =
+===============================================>>>>>*/
+
+body {
+  @include body-font();
+  color: $text-color;
+  font-size: 16px;
+  font-weight: $font-weight-regular;
+  font-size-adjust: auto;
+  line-height: 1.75em;
+  text-align: left;
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  font-smoothing: antialiased;
+}
+
+
+
+// --------------------------------------------------------------------------
+//   Headings
+// --------------------------------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include headings-font();
+  color: $text-color;
+  line-height: 1.3em;
+}
+
+// --------------------------------------------------------------------------
+//   Content Elements
+// --------------------------------------------------------------------------
+
+a {
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+p {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+strong {
+  font-weight: $font-weight-bold;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  display: block;
+  margin: 20px 0;
+  border: 0;
+}
+
+// blockquote {
+//   font-style: normal;
+//   font-weight: $font-weight-bold;
+//   text-align: center;
+//   color: $off-black;
+//   margin-top: 50px;
+//   margin-bottom: 50px;
+//
+//   p {
+//     font-size: 24px!important;
+//     line-height: 1.33!important;
+//
+//     &:last-child {
+//       margin-bottom: 0;
+//     }
+//   }
+// }
+
+table {
+  width: 100%;
+}
+
+input {
+  @include body-font();
+}

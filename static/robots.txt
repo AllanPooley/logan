@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+sitemap: https://prismic.lekoarts.de/sitemap.xml
