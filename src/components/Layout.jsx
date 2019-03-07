@@ -1,89 +1,100 @@
-/* eslint no-unused-expressions: 0 */
-/* eslint react/destructuring-assignment: 0 */
+import React, { Component } from 'react';
+import { StaticQuery, graphql } from 'gatsby';
+import smoothscroll from 'smoothscroll-polyfill';
+import {
+  Footer,
+  Header,
+  SEO,
+} from 'components';
+// Import global styles here
+import '../assets/sass/global/styles.scss';
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
-import { Global, css } from '@emotion/core'
-import { ThemeProvider } from 'emotion-theming'
-import '@reach/skip-nav/styles.css'
+const isClient = typeof window !== 'undefined';
+const viewportUnitsBuggyfill = isClient ? require('viewport-units-buggyfill') : null;
 
-import Footer from './Footer'
-import SEO from './SEO'
-import SkipNavLink from './SkipNavLink'
-import { theme, reset } from '../styles'
+class PureLayout extends Component {
+  state = {
+    navOpen: false,
+  };
 
-import 'typeface-lora'
-import 'typeface-source-sans-pro'
+  componentDidMount() {
+    viewportUnitsBuggyfill.init();
+    smoothscroll.polyfill();
+  }
 
-const globalStyle = css`
-  ${reset}
-  h1, h2, h3, h4, h5, h6 {
-    color: ${theme.colors.black};
+  componentWillUnmount() {
+    if (isClient) window.removeEventListener('scroll', this.handleScroll);
   }
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  body {
-    color: ${theme.colors.greyDarker};
-    background-color: ${theme.colors.bg};
-  }
-  ::selection {
-    color: ${theme.colors.bg};
-    background-color: ${theme.colors.primary};
-  }
-  a {
-    color: ${theme.colors.primary};
-    transition: all 0.4s ease-in-out;
-    text-decoration: none;
-    font-weight: 700;
-    font-style: italic;
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-  @media (max-width: ${theme.breakpoints.m}) {
-    html {
-      font-size: 16px !important;
-    }
-  }
-  @media (max-width: ${theme.breakpoints.s}) {
-    h1 {
-      font-size: 2.369rem !important;
-    }
-    h2 {
-      font-size: 1.777rem !important;
-    }
-    h3 {
-      font-size: 1.333rem !important;
-    }
-    h4 {
-      font-size: 1rem !important;
-    }
-    h5 {
-      font-size: 0.75rem !important;
-    }
-    h6 {
-      font-size: 0.563rem !important;
-    }
-  }
-`
 
-const PureLayout = ({ children, data, customSEO }) => (
-  <ThemeProvider theme={theme}>
-    <>
-      <Global styles={globalStyle} />
-      <SkipNavLink />
-      {!customSEO && <SEO />}
-      {children}
-      <Footer>
-        <div dangerouslySetInnerHTML={{ __html: data.prismicHomepage.data.footer.html }} />
-      </Footer>
-    </>
-  </ThemeProvider>
-)
+  toggleNav = (event) => {
+    event.preventDefault();
+    const { navOpen } = this.state;
+    if (event) event.preventDefault();
+    if (navOpen) document.body.classList.remove('nav-open');
+    if (!navOpen) document.body.classList.add('nav-open');
+    this.setState({
+      navOpen: !navOpen,
+    });
+  };
+
+  openNav = (event) => {
+    if (event) event.preventDefault();
+    document.body.classList.add('nav-open');
+    this.setState({
+      navOpen: true,
+    });
+  };
+
+  closeNav = () => {
+    document.body.classList.remove('nav-open');
+    this.setState({
+      navOpen: false,
+    });
+  };
+
+  render() {
+    const {
+      navOpen,
+    } = this.state;
+    const {
+      children,
+      settings,
+      location,
+      seoData,
+    } = this.props;
+    const {
+      metaTitle = false,
+      metaDescription = false,
+      openGraphImage = false,
+    } = seoData;
+    const isHome = Boolean(location.pathname === '/');
+    return (
+      <>
+        <SEO
+          title={metaTitle && metaTitle.text}
+          desc={metaDescription && metaDescription.text}
+          banner={openGraphImage && openGraphImage.url}
+        />
+        <div id="app" className="app">
+          <Header
+            navOpen={navOpen}
+            location={location}
+            navigation={settings.primary_menu}
+            toggleNavHandler={event => this.toggleNav(event)}
+          />
+          <main className={isHome ? 'home' : location.pathname.replace(/\//g, '')}>
+            {children}
+          </main>
+          <Footer
+            contactDetails={settings.contact_details}
+            socialLinks={settings.social_links}
+            portfolioLinks={settings.portfolio_links}
+          />
+        </div>
+      </>
+    );
+  }
+}
 
 class Layout extends Component {
   render() {
@@ -91,37 +102,27 @@ class Layout extends Component {
       <StaticQuery
         query={graphql`
           query LayoutQuery {
-            prismicHomepage {
+            settings: prismicSettings {
               data {
-                footer {
-                  html
+                primary_menu {
+                  title {
+                    text
+                  }
+                  page_link {
+                    link_type
+                    uid
+                    slug
+                    url
+                  }
                 }
               }
             }
           }
         `}
-        render={data => (
-          <PureLayout {...this.props} data={data}>
-            {this.props.children}
-          </PureLayout>
-        )}
+        render={data => <PureLayout {...this.props} settings={data.settings.data} />}
       />
-    )
+    );
   }
 }
 
-export default Layout
-
-Layout.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
-}
-
-PureLayout.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
-  data: PropTypes.object.isRequired,
-  customSEO: PropTypes.bool,
-}
-
-PureLayout.defaultProps = {
-  customSEO: false,
-}
+export default Layout;
