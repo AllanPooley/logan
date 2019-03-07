@@ -1,0 +1,28 @@
+.styled-button {
+  @include p3();
+  min-width: 250px;
+  border-radius: 36px;
+  background-color: transparent;
+  padding: 15px 35px;
+  border: 2px solid $white;
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  @include media-down(mobile) {
+    min-width: 190px;
+    padding: 8px 20px;
+  }
+
+  &:hover {
+    background-color: rgba($white, 0.1);
+    cursor: pointer;
+  }
+
+  &.active {
+    color: $black;
+    background-color: $white;
+  }
+
+  &:focus, &:active {
+    outline: none;
+  }
+}

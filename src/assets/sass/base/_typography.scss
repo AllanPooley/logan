@@ -1,0 +1,56 @@
+/*=============================================>>>>>
+= Typography Mixins and Variables =
+===============================================>>>>>*/
+
+// Font weight variables
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+@mixin headings-font() {
+  font-family: 'Karla', Sans-Serif;
+}
+
+@mixin body-font() {
+  font-family: 'Lato', Sans-Serif;
+}
+
+@mixin h1($color-dark: false) {
+  @include headings-font();
+  font-size: 52px;
+  line-height: 1.2em;
+  font-weight: $font-weight-bold;
+
+  @include media-down(mobile) {
+    font-size: 42px;
+  }
+
+  @if $color-dark == true {
+    color: $off-black;
+  } @else {
+    color: $white;
+  }
+}
+
+@mixin p1($color-dark: false, $font-weight: $font-weight-regular) {
+  @include body-font();
+  font-size: 18px;
+  line-height: 1.7em;
+  font-weight: $font-weight;
+
+  @include media-down(mobile) {
+    font-size: 16px;
+  }
+
+  @if $color-dark == true {
+    color: $primary;
+  } @else {
+    color: $white;
+  }
+}
