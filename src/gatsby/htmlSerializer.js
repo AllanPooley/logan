@@ -1,23 +1,37 @@
-const { RichText } = require('prismic-reactjs')
+const { RichText } = require('prismic-reactjs');
 
 // We don't want to import every PrismJS component - so that's why they're required individually
-const Prism = require('prismjs')
-require('prismjs/components/prism-javascript')
-require('prismjs/components/prism-css')
-require('prismjs/components/prism-scss')
-require('prismjs/components/prism-jsx')
-require('prismjs/components/prism-bash')
-require('prismjs/components/prism-json')
-require('prismjs/components/prism-diff')
-require('prismjs/components/prism-markdown')
-require('prismjs/components/prism-graphql')
+const Prism = require('prismjs');
+require('prismjs/components/prism-javascript');
+require('prismjs/components/prism-css');
+require('prismjs/components/prism-scss');
+require('prismjs/components/prism-jsx');
+require('prismjs/components/prism-bash');
+require('prismjs/components/prism-json');
+require('prismjs/components/prism-diff');
+require('prismjs/components/prism-markdown');
+require('prismjs/components/prism-graphql');
 
-const { Elements } = RichText
+const { Elements } = RichText;
 
 // Labels with this name will be inline code
-const codeInline = ['text']
+const codeInline = ['text'];
 // Labels with these names will become code blocks
-const codeBlock = ['javascript', 'css', 'scss', 'jsx', 'bash', 'json', 'diff', 'markdown', 'graphql']
+const codeBlock = ['javascript', 'css', 'scss', 'jsx', 'bash', 'json', 'diff', 'markdown', 'graphql'];
+
+const linkResolver = (linkElement) => {
+  switch (linkElement.type) {
+    case 'post': {
+      return `/${linkElement.uid}`;
+    }
+    // Add cases here for any types here you've created in prismic here
+    // Especially those those that live under a parent slug:
+    // For example: `/${BLOG_SLUG}/${linkElement.uid}`
+    default: {
+      return null;
+    }
+  }
+};
 
 const htmlSerializer = (type, element, content) => {
   switch (type) {
@@ -25,34 +39,45 @@ const htmlSerializer = (type, element, content) => {
     case Elements.label: {
       // Use the inline code for labels that are in the array of "codeInline"
       if (codeInline.includes(element.data.label)) {
-        return `<code class="language-${element.data.label}">${content}</code>`
+        return `<code class="language-${element.data.label}">${content}</code>`;
       }
       // Use the blockquote for labels with the name "quote"
       if (element.data.label === 'quote') {
-        return `<blockquote><p>${content}</p></blockquote>`
+        return `<blockquote><p>${content}</p></blockquote>`;
       }
       // Use the code block for labels that are in the array of "codeBlock"
       // Choose the right PrismJS highlighting with the label name
       if (codeBlock.includes(element.data.label)) {
         return `<pre class="language-${element.data.label}"><code class="language-${
           element.data.label
-        }">${Prism.highlight(content, Prism.languages[element.label])}</code></pre>`
+        }">${Prism.highlight(content, Prism.languages[element.label])}</code></pre>`;
       }
-      return null
+      return null;
     }
     case Elements.preformatted: {
       if (codeBlock.includes(element.label)) {
         return `<pre class="language-${element.label}"><code class="language-${element.label}">${Prism.highlight(
           element.text,
-          Prism.languages[element.label]
-        )}</code></pre>`
+          Prism.languages[element.label],
+        )}</code></pre>`;
       }
-      return null
+      return null;
+    }
+    case Elements.hyperlink: {
+      const targetAttr = element.data.target ? element.data.target : null;
+      // If the hyperlink has target="_blank" we add rel="noopener noreferrer"
+      // See https://developers.google.com/web/tools/lighthouse/audits/noopener
+      const relAttr = element.data.target ? 'noopener noreferrer' : null;
+      const hrefAttr = element.data.url || linkResolver(element.data);
+      const attributes = `${targetAttr ? `target=${targetAttr}` : ''}
+                          ${relAttr ? ` rel=${relAttr}` : ''}
+                          ${hrefAttr ? ` href=${hrefAttr}` : ''}`;
+      return `<a ${attributes}>${content}</a>`;
     }
     default: {
-      return null
+      return null;
     }
   }
-}
+};
 
-module.exports = htmlSerializer
+module.exports = htmlSerializer;
