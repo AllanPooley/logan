@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import smoothscroll from 'smoothscroll-polyfill';
-// import {
-//   Footer,
-//   Header,
-//   SEO,
-// } from 'components';
+import {
+  Footer,
+  Header,
+  SEO,
+} from '.';
 import '../sass/global/styles.scss';
 
 const isClient = typeof window !== 'undefined';
@@ -57,38 +57,35 @@ class PureLayout extends Component {
     } = this.state;
     const {
       children,
-      settings,
       location,
+      settings,
       seoData,
     } = this.props;
-    // const {
-    //   metaTitle = false,
-    //   metaDescription = false,
-    //   openGraphImage = false,
-    // } = seoData;
+    const {
+      metaTitle = null,
+      metaDescription = null,
+      openGraphImage = null,
+    } = seoData;
+    console.log('seoData @ Layout', seoData);
     const isHome = Boolean(location.pathname === '/');
     return (
       <>
-        {/* <SEO
+        <SEO
           title={metaTitle && metaTitle.text}
           desc={metaDescription && metaDescription.text}
           banner={openGraphImage && openGraphImage.url}
-        /> */}
+        />
         <div id="app" className="app">
-          {/* <Header
+          <Header
             navOpen={navOpen}
             location={location}
             navigation={settings.primary_menu}
             toggleNavHandler={event => this.toggleNav(event)}
-          /> */}
+          />
           <main className={isHome ? 'home' : location.pathname.replace(/\//g, '')}>
             {children}
           </main>
-          {/* <Footer
-            contactDetails={settings.contact_details}
-            socialLinks={settings.social_links}
-            portfolioLinks={settings.portfolio_links}
-          /> */}
+          <Footer />
         </div>
       </>
     );

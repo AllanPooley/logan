@@ -7,11 +7,27 @@ import website from '../../config/website';
 class Index extends Component {
   render() {
     const {
-      data: { homepage, posts },
+      data: {
+        page: {
+          data: pageData
+        },
+        posts,
+      },
       location,
     } = this.props;
+    console.log('Props @ Home', this.props);
+    const {
+      metaTitle,
+      metaDescription,
+      openGraphImage,
+    } = pageData;
+    const seoData = {
+      metaTitle,
+      metaDescription,
+      openGraphImage,
+    };
     return (
-      <Layout location={location}>
+      <Layout location={location} seoData={seoData}>
         <span>Home</span>
       </Layout>
     );
@@ -22,8 +38,28 @@ export default Index;
 
 export const pageQuery = graphql`
   query IndexQuery {
-    home: prismicHome {
-      uid
+    site {
+      siteMetadata {
+        blogSlug,
+      }
+    },
+    page: prismicHome {
+      uid,
+      data {
+        metaTitle: meta_title {
+          html
+          text
+        },
+        metaDescription: meta_description {
+          html
+          text
+        },
+        openGraphImage: open_graph_image {
+          alt
+          copyright
+          url
+        }
+      }
     }
     posts: allPrismicStory(sort: { fields: [data___date], order: DESC }) {
       edges {

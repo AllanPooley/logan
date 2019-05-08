@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <header className="header">
         <Link to="/" aria-label="Back to Home">
-          <span>Frontend Developer</span>
+          <span>Header</span>
         </Link>
       </header>
     );
