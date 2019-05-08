@@ -23,11 +23,11 @@ export default Category;
 
 export const pageQuery = graphql`
   query CategoryPage($category: String!) {
-    posts: allPrismicPost(
+    posts: allPrismicStory(
       sort: { fields: [data___date], order: DESC }
       filter: {
         data: {
-          categories: { elemMatch: { category: { document: { elemMatch: { data: { name: { eq: $category } } } } } } }
+          category: { eq: $category }
         }
       }
     ) {

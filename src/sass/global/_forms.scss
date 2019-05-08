@@ -1,0 +1,67 @@
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  label.field {
+    display: block;
+    margin-bottom: 30px;
+
+    @include media-down(mobile) {
+      margin-bottom: 10px;
+    }
+
+    &.half-width {
+      width: calc(50% - 15px);
+
+      @include media-down(mobile) {
+        width: 100%;
+      }
+
+      &.half-width-left {
+        margin-right: 15px;
+        @include media-down(mobile) {
+          margin-right: 0;
+        }
+      }
+      &.half-width-right {
+        margin-left: 15px;
+        @include media-down(mobile) {
+          margin-left: 0;
+        }
+      }
+    }
+
+    &.full-width {
+      width: 100%;
+    }
+
+    input, textarea {
+
+    }
+
+    input {
+
+    }
+
+    textarea {
+
+    }
+
+    // Prevent yellow background-color on chrome auto-fill
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+      border: none;
+      -webkit-text-fill-color: $white;
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+}

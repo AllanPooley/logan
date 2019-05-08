@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import smoothscroll from 'smoothscroll-polyfill';
-import {
-  Footer,
-  Header,
-  SEO,
-} from 'components';
-// Import global styles here
-import '../assets/sass/global/styles.scss';
+// import {
+//   Footer,
+//   Header,
+//   SEO,
+// } from 'components';
+import '../sass/global/styles.scss';
 
 const isClient = typeof window !== 'undefined';
 const viewportUnitsBuggyfill = isClient ? require('viewport-units-buggyfill') : null;
@@ -62,34 +61,34 @@ class PureLayout extends Component {
       location,
       seoData,
     } = this.props;
-    const {
-      metaTitle = false,
-      metaDescription = false,
-      openGraphImage = false,
-    } = seoData;
+    // const {
+    //   metaTitle = false,
+    //   metaDescription = false,
+    //   openGraphImage = false,
+    // } = seoData;
     const isHome = Boolean(location.pathname === '/');
     return (
       <>
-        <SEO
+        {/* <SEO
           title={metaTitle && metaTitle.text}
           desc={metaDescription && metaDescription.text}
           banner={openGraphImage && openGraphImage.url}
-        />
+        /> */}
         <div id="app" className="app">
-          <Header
+          {/* <Header
             navOpen={navOpen}
             location={location}
             navigation={settings.primary_menu}
             toggleNavHandler={event => this.toggleNav(event)}
-          />
+          /> */}
           <main className={isHome ? 'home' : location.pathname.replace(/\//g, '')}>
             {children}
           </main>
-          <Footer
+          {/* <Footer
             contactDetails={settings.contact_details}
             socialLinks={settings.social_links}
             portfolioLinks={settings.portfolio_links}
-          />
+          /> */}
         </div>
       </>
     );

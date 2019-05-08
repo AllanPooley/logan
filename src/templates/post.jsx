@@ -2,8 +2,8 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { Layout } from '../components';
 
-const Post = ({ data: { prismicPost } }) => {
-  const { data } = prismicPost;
+const Post = ({ data: { prismicStory } }) => {
+  const { data } = prismicStory;
   console.log('data @ Post', data);
   return (
     <Layout>
@@ -19,10 +19,10 @@ export default Post;
 
 export const pageQuery = graphql`
   query PostBySlug($uid: String!) {
-    prismicPost(uid: { eq: $uid }) {
+    prismicStory(uid: { eq: $uid }) {
       uid
     }
-    posts: allPrismicPost(limit: 2, sort: { fields: [data___date], order: DESC }) {
+    posts: allPrismicStory(limit: 2, sort: { fields: [data___date], order: DESC }) {
       edges {
         node {
           uid

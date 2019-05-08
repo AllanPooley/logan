@@ -3,8 +3,10 @@ require('dotenv').config({
 });
 
 const {
+  PRISMIC_REPO_NAME,
+  PRISMIC_API_KEY,
   GOOGLE_ANALYTICS_ID,
-  MAILCHIMP_ENDPOINT,
+  // MAILCHIMP_ENDPOINT,
 } = process.env;
 
 const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer');
@@ -58,7 +60,7 @@ module.exports = {
       options: {
         data: '@import "resources.scss";',
         includePaths: [
-          'src/assets/sass/base',
+          'src/sass/base',
         ],
       },
     },
@@ -69,17 +71,17 @@ module.exports = {
         trackingId: GOOGLE_ANALYTICS_ID,
       },
     },
-    {
-      resolve: 'gatsby-plugin-mailchimp',
-      options: {
-        endpoint: MAILCHIMP_ENDPOINT,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-mailchimp',
+    //   options: {
+    //     endpoint: MAILCHIMP_ENDPOINT,
+    //   },
+    // },
     {
       resolve: 'gatsby-source-prismic',
       options: {
-        repositoryName: 'gatsby-starter-prismic',
-        accessToken: `${process.env.API_KEY}`,
+        repositoryName: PRISMIC_REPO_NAME,
+        accessToken: PRISMIC_API_KEY,
         // Get the correct URLs in blog posts
         linkResolver: () => post => `/${post.uid}`,
         // PrismJS highlighting for labels and slices
@@ -90,15 +92,9 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: 'config/typography.js',
-      },
-    },
-    {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: website.googleAnalyticsID,
+        trackingId: GOOGLE_ANALYTICS_ID,
       },
     },
     'gatsby-plugin-sitemap',
