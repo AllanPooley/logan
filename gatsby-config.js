@@ -1,12 +1,17 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
-const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
+const {
+  GOOGLE_ANALYTICS_ID,
+  MAILCHIMP_ENDPOINT,
+} = process.env;
 
-const website = require('./config/website')
+const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer');
 
-const pathPrefix = website.pathPrefix === '/' ? '' : website.pathPrefix
+const website = require('./config/website');
+
+const pathPrefix = website.pathPrefix === '/' ? '' : website.pathPrefix;
 
 module.exports = {
   /* General Information */
@@ -24,11 +29,52 @@ module.exports = {
     author: website.author,
     twitter: website.twitter,
     facebook: website.facebook,
+    blogSlug: website.blogSlug,
+    categorySlug: website.categorySlug,
   },
   /* Plugins */
   plugins: [
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: ['/quote/*', '/success/'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        sitemap: '/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/', disallow: ['/quote/*', '/success/'] }],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: website.url,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        data: '@import "resources.scss";',
+        includePaths: [
+          'src/assets/sass/base',
+        ],
+      },
+    },
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-emotion',
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: GOOGLE_ANALYTICS_ID,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: MAILCHIMP_ENDPOINT,
+      },
+    },
     {
       resolve: 'gatsby-source-prismic',
       options: {
@@ -73,4 +119,4 @@ module.exports = {
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
   ],
-}
+};
