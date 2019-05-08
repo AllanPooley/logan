@@ -1,0 +1,2 @@
+[template.environment]
+  API_KEY = "YOUR_PRISMIC_API_KEY_HERE"
