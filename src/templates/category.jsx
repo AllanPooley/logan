@@ -23,7 +23,7 @@ export default Category;
 
 export const pageQuery = graphql`
   query CategoryPage($category: String!) {
-    posts: allPrismicStory(
+    posts: allPrismicPost(
       sort: { fields: [data___date], order: DESC }
       filter: {
         data: {
