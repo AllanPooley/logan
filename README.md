@@ -1,7 +1,7 @@
 # Logan
 
 - [Gatsby](https://gatsbyjs.org) Boilerplate which uses the Headless CMS [Prismic](https://prismic.io/)
-- Named after a wizard 🧙
+- Named after a [wizard](https://github.com/samlogan) 🧙
 - Built and used by the folks at [Little & Big](https://www.littleandbig.com.au/)
 - Forked from [gatsby-starter-prismic](https://github.com/LekoArts/gatsby-starter-prismic/) by [LekoArts](https://github.com/LekoArts).
 
