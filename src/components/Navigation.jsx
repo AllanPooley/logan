@@ -10,7 +10,6 @@ class Navigation extends Component {
       navigation,
     } = this.props;
     const { pathname: currentPath } = location;
-    console.log('navigation @ Navigation', navigation);
     return (
       <nav className="navigation" role="navigation">
         <div className="nav-container">
