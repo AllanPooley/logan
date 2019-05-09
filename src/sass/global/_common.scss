@@ -32,6 +32,10 @@ body {
   position: relative;
 }
 
+main {
+  flex: 1;
+}
+
 .half-wrap {
   width: 100%;
   max-width: calc(#{$wrap-width} / 2);
