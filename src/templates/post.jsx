@@ -19,10 +19,10 @@ export default Post;
 
 export const pageQuery = graphql`
   query PostBySlug($uid: String!) {
-    prismicStory(uid: { eq: $uid }) {
+    prismicPost(uid: { eq: $uid }) {
       uid
     }
-    posts: allPrismicStory(limit: 2, sort: { fields: [data___date], order: DESC }) {
+    posts: allPrismicPost(limit: 2, sort: { fields: [data___date], order: DESC }) {
       edges {
         node {
           uid

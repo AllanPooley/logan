@@ -17,7 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await wrapper(
     graphql(`
       {
-        allPrismicStory {
+        allPrismicPost {
           edges {
             node {
               id
@@ -33,7 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
   );
 
   const categorySet = new Set();
-  const postsList = result.data.allPrismicStory.edges;
+  const postsList = result.data.allPrismicPost.edges;
 
   // Double check that the post has a category assigned
   postsList.forEach((edge) => {

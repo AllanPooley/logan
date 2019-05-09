@@ -1,8 +1,8 @@
 # Logan
 
-- Gatsby Boilerplate which uses the Headless CMS [Prismic](https://prismic.io/).
+- [Gatsby](https://gatsbyjs.org) Boilerplate which uses the Headless CMS [Prismic](https://prismic.io/)
 - Named after a wizard 🧙
-- Built and used by the folks at [Little & Big](https://www.littleandbig.com.au/).
+- Built and used by the folks at [Little & Big](https://www.littleandbig.com.au/)
 
 ## Getting Started
 
