@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import smoothscroll from 'smoothscroll-polyfill';
 import {
+  SEO,
   Footer,
   Header,
-  SEO,
 } from '.';
 import '../sass/global/styles.scss';
 
@@ -61,12 +61,13 @@ class PureLayout extends Component {
       settings,
       seoData,
     } = this.props;
+    const { primaryMenu } = settings;
     const {
       metaTitle = null,
       metaDescription = null,
       openGraphImage = null,
     } = seoData;
-    console.log('seoData @ Layout', seoData);
+    console.log('props @ Layout', this.props);
     const isHome = Boolean(location.pathname === '/');
     return (
       <>
@@ -79,7 +80,7 @@ class PureLayout extends Component {
           <Header
             navOpen={navOpen}
             location={location}
-            navigation={settings.primary_menu}
+            navigation={primaryMenu}
             toggleNavHandler={event => this.toggleNav(event)}
           />
           <main className={isHome ? 'home' : location.pathname.replace(/\//g, '')}>
@@ -100,7 +101,7 @@ class Layout extends Component {
           query LayoutQuery {
             settings: prismicSettings {
               data {
-                primary_menu {
+                primaryMenu: primary_menu {
                   title {
                     text
                   }

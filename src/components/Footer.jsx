@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Wrapper } from '.';
 
 class Footer extends Component {
   render() {
     return (
       <footer className="footer">
-        <span>Footer</span>
+        <Wrapper>
+          <span>Footer</span>
+        </Wrapper>
       </footer>
     );
   }

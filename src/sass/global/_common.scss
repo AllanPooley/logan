@@ -8,8 +8,21 @@
 }
 
 body {
+  height: 100%;
   background-color: $off-black;
   position: relative;
+
+  &.nav-open {
+    overflow: hidden;
+    max-height: 100vh;
+
+    #app {
+      &:before {
+        opacity: 0.7;
+        z-index: 4;
+      }
+    }
+  }
 }
 
 #app {
@@ -17,23 +30,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-}
-
-.wrap {
-  width: 100%;
-  max-width: $wrap-width;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  &.narrow-wrap {
-    max-width: $narrow-wrap-width;
-  }
-
-  &.wide-wrap {
-    max-width: $wide-wrap-width;
-  }
 }
 
 .half-wrap {

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
-import { Layout } from '../components';
-import website from '../../config/website';
-
+import { Layout, Wrapper } from '../components';
 
 class Index extends Component {
   render() {
@@ -10,8 +8,7 @@ class Index extends Component {
       data: {
         page: {
           data: pageData
-        },
-        posts,
+        }
       },
       location,
     } = this.props;
@@ -28,7 +25,9 @@ class Index extends Component {
     };
     return (
       <Layout location={location} seoData={seoData}>
-        <span>Home</span>
+        <Wrapper>
+          <span>Home</span>
+        </Wrapper>
       </Layout>
     );
   }
@@ -58,13 +57,6 @@ export const pageQuery = graphql`
           alt
           copyright
           url
-        }
-      }
-    }
-    posts: allPrismicStory(sort: { fields: [data___date], order: DESC }) {
-      edges {
-        node {
-          uid
         }
       }
     }

@@ -1,0 +1,43 @@
+.logo {
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+
+  svg {
+    width: 100px;
+    height: 80px;
+  }
+
+  &.large {
+    svg {
+      width: 165px;
+      height: 135px;
+
+      @include media-down(mobile) {
+        width: 140px;
+        height: 100px;
+      }
+    }
+  }
+
+  &.small {
+    svg {
+      @include media-down(mobile) {
+        width: 45px;
+        height: 35px;
+      }
+    }
+  }
+
+  &.white {
+    fill: $white;
+  }
+
+  &.black {
+    fill: $black;
+  }
+
+  &:active, &:focus {
+    outline: none;
+  }
+}
