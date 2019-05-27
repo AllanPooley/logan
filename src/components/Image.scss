@@ -1,0 +1,29 @@
+.gatsby-image {
+  height: 100%;
+  width: 100%;
+  position: absolute !important;
+
+  &.placeholder {
+    background-color: lightgrey;
+  }
+
+  img {
+    object-position: center center !important;
+  }
+
+  &.contain {
+    img {
+      object-fit: contain !important;
+    }
+  }
+  &.cover {
+    img {
+      object-fit: cover !important;
+    }
+  }
+  &.top-aligned {
+    img {
+      object-position: top center !important;
+    }
+  }
+}
