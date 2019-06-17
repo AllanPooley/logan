@@ -39,14 +39,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        exclude: ['/quote/*', '/success/'],
+        exclude: ['/thank-you/'],
       },
     },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         sitemap: '/sitemap.xml',
-        policy: [{ userAgent: '*', allow: '/', disallow: ['/quote/*', '/success/'] }],
+        policy: [{ userAgent: '*', allow: '/', disallow: ['/thank-you/'] }],
       },
     },
     {
