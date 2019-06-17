@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Wrapper } from '.';
+import { Wrapper } from '../common';
 
 class Footer extends Component {
   render() {

@@ -1,19 +1,9 @@
 import SEO from './SEO';
-import Footer from './Footer';
-import Header from './Header';
-import Navigation from './Navigation';
-import SliceZone from './SliceZone';
 import Layout from './Layout';
-import Wrapper from './Wrapper';
-import Logo from './Logo';
+import SliceZone from './SliceZone';
 
 export {
-  Header,
-  Footer,
-  Navigation,
-  Layout,
   SEO,
+  Layout,
   SliceZone,
-  Wrapper,
-  Logo,
 };

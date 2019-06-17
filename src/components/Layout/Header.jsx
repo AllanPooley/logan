@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Logo, Navigation, Wrapper } from '.';
+import { Navigation } from '.';
+import { Wrapper, Logo } from '../common';
 
 class Header extends Component {
   render() {

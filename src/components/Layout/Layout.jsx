@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import smoothscroll from 'smoothscroll-polyfill';
 import {
-  SEO,
-  Footer,
   Header,
+  Footer,
 } from '.';
-import '../sass/global/styles.scss';
+import { SEO } from '..';
+import '../../sass/global/styles.scss';
 
 const isClient = typeof window !== 'undefined';
 const viewportUnitsBuggyfill = isClient ? require('viewport-units-buggyfill') : null;
