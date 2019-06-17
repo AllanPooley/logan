@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
-import { Layout, Wrapper } from '../components';
+import { Layout } from '../components';
+import { Wrapper } from '../components/common';
 
 class Index extends Component {
   render() {
