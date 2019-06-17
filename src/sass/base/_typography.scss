@@ -21,7 +21,7 @@ $font-weight-black: 900;
   font-family: 'Lato', Sans-Serif;
 }
 
-@mixin h1($color-dark: false) {
+@mixin h1($dark-font: false) {
   @include headings-font();
   font-size: 52px;
   line-height: 1.2em;
@@ -31,14 +31,14 @@ $font-weight-black: 900;
     font-size: 42px;
   }
 
-  @if $color-dark == true {
-    color: $off-black;
+  @if $dark-font == true {
+    color: $black;
   } @else {
     color: $white;
   }
 }
 
-@mixin p1($color-dark: false, $font-weight: $font-weight-regular) {
+@mixin p1($dark-font: false, $font-weight: $font-weight-regular) {
   @include body-font();
   font-size: 18px;
   line-height: 1.7em;
@@ -48,8 +48,8 @@ $font-weight-black: 900;
     font-size: 16px;
   }
 
-  @if $color-dark == true {
-    color: $primary;
+  @if $dark-font == true {
+    color: $black;
   } @else {
     color: $white;
   }
