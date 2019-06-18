@@ -1,3 +1,15 @@
+button {
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus, &:active {
+    outline: none;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
 .styled-button {
   min-width: 250px;
   border-radius: 36px;
