@@ -3,6 +3,8 @@ require('dotenv').config({
 });
 
 const {
+  NODE_ENV,
+  IS_STAGING,
   PRISMIC_REPO_NAME,
   PRISMIC_API_KEY,
   GOOGLE_ANALYTICS_ID,
@@ -46,7 +48,11 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         sitemap: '/sitemap.xml',
-        policy: [{ userAgent: '*', allow: '/', disallow: ['/thank-you/'] }],
+        policy: IS_STAGING ? (
+          [{ userAgent: '*', disallow: '/' }]
+        ) : (
+          [{ userAgent: '*', allow: '/', disallow: ['/thank-you/'] }]
+        ),
       },
     },
     {
