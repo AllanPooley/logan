@@ -1,3 +1,38 @@
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="file"],
+textarea,
+select {
+  // Remove iOS input shadow
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+// Prevent yellow background-color on chrome auto-fill
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: $off-black;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+textarea {
+  resize: none;
+}
+
 form {
   display: flex;
   flex-direction: row;
@@ -46,22 +81,6 @@ form {
 
     textarea {
 
-    }
-
-    // Prevent yellow background-color on chrome auto-fill
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover
-    textarea:-webkit-autofill:focus,
-    select:-webkit-autofill,
-    select:-webkit-autofill:hover,
-    select:-webkit-autofill:focus {
-      border: none;
-      -webkit-text-fill-color: $white;
-      -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-      transition: background-color 5000s ease-in-out 0s;
     }
   }
 }
