@@ -14,6 +14,14 @@ select {
   appearance: none;
 }
 
+// Hide increment and decrement spin buttons
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 // Prevent yellow background-color on chrome auto-fill
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
