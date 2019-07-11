@@ -97,12 +97,6 @@ module.exports = {
     'gatsby-plugin-lodash',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: GOOGLE_ANALYTICS_ID,
-      },
-    },
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
