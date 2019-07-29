@@ -67,7 +67,6 @@ class PureLayout extends Component {
       metaDescription = null,
       openGraphImage = null,
     } = seoData;
-    console.log('props @ Layout', this.props);
     const isHome = Boolean(location.pathname === '/');
     return (
       <>
@@ -75,6 +74,7 @@ class PureLayout extends Component {
           title={metaTitle && metaTitle.text}
           desc={metaDescription && metaDescription.text}
           banner={openGraphImage && openGraphImage.url}
+          pathname={location.pathname}
         />
         <div id="app" className="app">
           <Header
