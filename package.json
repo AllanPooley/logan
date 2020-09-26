@@ -30,7 +30,7 @@
     "gatsby-plugin-sitemap": "^2.4.13",
     "gatsby-source-prismic": "^3.2.1",
     "gatsby-transformer-sharp": "^2.5.15",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "node-sass": "^4.14.1",
     "prismic-reactjs": "^0.3.2",
     "prismjs": "^1.15.0",
