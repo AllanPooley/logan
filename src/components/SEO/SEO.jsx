@@ -156,7 +156,6 @@ const SEO = ({
         <html lang={siteLanguage} />
         <meta name="description" content={seo.description} />
         <meta name="image" content={seo.image} />
-        <meta name="gatsby-starter" content="Gatsby Starter Prismic" />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
         {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
         {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}

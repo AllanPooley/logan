@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import smoothscroll from 'smoothscroll-polyfill';
 import {
   Header,
   Footer,
@@ -9,21 +8,11 @@ import { SEO } from '..';
 import '../../sass/global/styles.scss';
 
 const isClient = typeof window !== 'undefined';
-const viewportUnitsBuggyfill = isClient ? require('viewport-units-buggyfill') : null;
 
 class PureLayout extends Component {
   state = {
     navOpen: false,
   };
-
-  componentDidMount() {
-    viewportUnitsBuggyfill.init();
-    smoothscroll.polyfill();
-  }
-
-  componentWillUnmount() {
-    if (isClient) window.removeEventListener('scroll', this.handleScroll);
-  }
 
   toggleNav = (event) => {
     event.preventDefault();

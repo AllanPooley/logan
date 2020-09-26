@@ -1,0 +1,77 @@
+{
+  "Main" : {
+    "settings_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Settings Title",
+        "placeholder" : "Settings title"
+      }
+    },
+    "email" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "paragraph",
+        "label" : "Email",
+        "placeholder" : "hello@littleandbig.com.au"
+      }
+    },
+    "address" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "paragraph",
+        "label" : "Address",
+        "placeholder" : "1/45 The Corso, Manly NSW 2095"
+      }
+    },
+    "social_links" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "type" : {
+            "type" : "Select",
+            "config" : {
+              "options" : [ "Twitter", "Facebook", "Instagram" ],
+              "label" : "Type",
+              "placeholder" : "Select social media type"
+            }
+          },
+          "link" : {
+            "type" : "Link",
+            "config" : {
+              "allowTargetBlank" : true,
+              "label" : "link",
+              "placeholder" : "Enter social media URL"
+            }
+          }
+        },
+        "label" : "Social Links"
+      }
+    }
+  },
+  "Navigation" : {
+    "primary_menu" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "title" : {
+            "type" : "StructuredText",
+            "config" : {
+              "single" : "heading3",
+              "label" : "Label",
+              "placeholder" : "Label used in the menu for the link"
+            }
+          },
+          "page_link" : {
+            "type" : "Link",
+            "config" : {
+              "label" : "Page Link",
+              "placeholder" : "Page that the link leads to"
+            }
+          }
+        },
+        "label" : "Primary Menu"
+      }
+    }
+  }
+}

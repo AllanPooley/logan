@@ -3,13 +3,13 @@ require('dotenv').config({
 });
 
 const {
-  NODE_ENV,
   IS_STAGING,
   PRISMIC_REPO_NAME,
   PRISMIC_API_KEY,
-  GOOGLE_ANALYTICS_ID,
-  // MAILCHIMP_ENDPOINT,
 } = process.env;
+
+const homeSchema = require('./src/schemas/home.json');
+const settingsSchema = require('./src/schemas/settings.json');
 
 const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer');
 
@@ -71,16 +71,10 @@ module.exports = {
       },
     },
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: GOOGLE_ANALYTICS_ID,
-      },
-    },
     // {
-    //   resolve: 'gatsby-plugin-mailchimp',
+    //   resolve: 'gatsby-plugin-google-analytics',
     //   options: {
-    //     endpoint: MAILCHIMP_ENDPOINT,
+    //     trackingId: GOOGLE_ANALYTICS_ID,
     //   },
     // },
     {
@@ -92,6 +86,10 @@ module.exports = {
         linkResolver: () => post => `/${post.uid}`,
         // PrismJS highlighting for labels and slices
         htmlSerializer: () => prismicHtmlSerializer,
+        schemas: {
+          home: homeSchema,
+          settings: settingsSchema,
+        },
       },
     },
     'gatsby-plugin-lodash',
