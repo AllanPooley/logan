@@ -2,7 +2,6 @@
 
 - [Gatsby](https://gatsbyjs.org) Boilerplate which uses the Headless CMS [Prismic](https://prismic.io/)
 - Named after a [wizard](https://github.com/samlogan) 🧙
-- Built and used by the folks at [Little & Big](https://www.littleandbig.com.au/)
 - Forked from [gatsby-starter-prismic](https://github.com/LekoArts/gatsby-starter-prismic/) by [LekoArts](https://github.com/LekoArts).
 
 ## Getting Started
@@ -105,7 +104,7 @@ In order for the project to successfully build you'll need to configure your pri
       "config" : {
         "single" : "paragraph",
         "label" : "Email",
-        "placeholder" : "hello@littleandbig.com.au"
+        "placeholder" : "hello@allanpooley.com"
       }
     },
     "address" : {
